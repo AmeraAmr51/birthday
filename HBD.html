@@ -3,39 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>كل سنة وانت  طيب يا شههب </title>
+  <title>Happy Birthday Shehab!</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to right, #ffecd2, #fcb69f);
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      overflow: hidden;
+      font-family: 'Comic Sans MS', cursive;
+      color: white;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      overflow: hidden;
+    }
+
+    .stars-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    .shooting-star {
+      position: fixed;
+      width: 2px;
+      height: 100px;
+      background: linear-gradient(45deg, white, transparent);
+      opacity: 0;
+      animation: shoot 5s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    .shooting-star:nth-child(2) { top: 10%; left: 5%; animation-delay: 0s; }
+    .shooting-star:nth-child(3) { top: 30%; left: 20%; animation-delay: 2s; }
+    .shooting-star:nth-child(4) { top: 50%; left: 60%; animation-delay: 4s; }
+    .shooting-star:nth-child(5) { top: 70%; left: 40%; animation-delay: 6s; }
+
+    @keyframes shoot {
+      0% { transform: translate(0, 0); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translate(600px, 300px); opacity: 0; }
     }
 
     .card {
-      background: white;
-      padding: 30px 30px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
       text-align: center;
       border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      box-shadow: 0 0 30px rgba(255,255,255,0.2);
       z-index: 2;
-      position: relative;
       max-width: 90%;
       width: 500px;
+      position: relative;
+    }
+
+    .name-shehab {
+      font-size: 48px;
+      font-weight: bold;
+      color: #ffffff;
+      text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff;
+      animation: float 3s ease-in-out infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
     h1 {
-      color: #e91e63;
+      color: #ffccff;
+      text-shadow: 0 0 10px #fff, 0 0 20px #f0f;
     }
 
     p {
       font-size: 18px;
-      color: #555;
+      color: #ccc;
       margin-bottom: 20px;
     }
 
@@ -45,6 +106,7 @@
       scroll-behavior: smooth;
       gap: 10px;
       padding-bottom: 10px;
+      margin-bottom: 20px;
     }
 
     .album img {
@@ -53,7 +115,7 @@
       object-fit: cover;
       border-radius: 15px;
       flex-shrink: 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 8px rgba(255,255,255,0.2);
     }
 
     .album::-webkit-scrollbar {
@@ -61,16 +123,15 @@
     }
 
     .album::-webkit-scrollbar-thumb {
-      background: #ff4081;
+      background: #6983d8;
       border-radius: 10px;
     }
 
     button {
-      margin-top: 20px;
       padding: 10px 25px;
       font-size: 18px;
       border: none;
-      background-color: #ff4081;
+      background-color: #6983d8;
       color: white;
       border-radius: 10px;
       cursor: pointer;
@@ -78,7 +139,7 @@
     }
 
     button:hover {
-      background-color: #f50057;
+      background-color: #8f9cd8;
     }
 
     canvas {
@@ -91,38 +152,49 @@
   </style>
 </head>
 <body>
+  <!-- ⭐ Lots of Stars -->
+  <div class="stars-container" id="stars"></div>
+
+  <!-- 🌠 Shooting Stars -->
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+
+  <!-- 🎁 Main Birthday Card -->
   <div class="card">
-    <h1>🎉 Happy Birthday, My Friend! 🎂</h1>
-    <p>Wishing you a day full of joy and beautiful memories!</p>
+    <div class="name-shehab">SHEHAB</div>
+    <h1>🎉 Happy Birthday! 🎂</h1>
+    <p>كل سنة وانت طيب وبخير يارب ويارب ديما بتضحك ومبسوط  ... مبسوطه اني عرفتك </p>
 
     <div class="album" id="photo-album">
-      <img src="images/1.jpeg" alt="Friend's Photo" />
-      <img src="images/2.jpeg" alt="Friend's Photo" />
-      <img src="images/3.jpeg" alt="Friend's Photo" />
-      <img src="images/4.jpeg" alt="Friend's Photo" />
-      <img src="images/5.jpeg" alt="Friend's Photo" />
-      <img src="images/6.jpeg" alt="Friend's Photo" />
-      <img src="images/7.jpeg" alt="Friend's Photo" />
-      <img src="images/8.jpeg" alt="Friend's Photo" />
+      <img src="images/1.jpeg" />
+      <img src="images/2.jpeg" />
+      <img src="images/3.jpeg" />
+      <img src="images/4.jpeg" />
+      <img src="images/5.jpeg" />
+      <img src="images/6.jpeg" />
+      <img src="images/7.jpeg" />
+      <img src="images/8.jpeg" />
     </div>
 
-    <button onclick="launchConfetti(); playMusic()">🎊 Celebrate 🎊</button>
+    <button onclick="launchConfetti(); playMusic()">🎊 دوس هناا 🎊</button>
   </div>
 
+  <!-- 🎊 Confetti -->
   <canvas id="confetti-canvas"></canvas>
 
-  <!-- 🎵 Audio file -->
+  <!-- 🎶 Audio -->
   <audio id="birthday-audio">
     <source src="audio/1.mpeg" type="audio/mpeg">
     Your browser does not support the audio tag.
   </audio>
 
   <script>
-    // Confetti
+    // 🌠 Confetti
     function launchConfetti() {
       const canvas = document.getElementById('confetti-canvas');
       const ctx = canvas.getContext('2d');
-
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
 
@@ -148,7 +220,6 @@
           ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r);
           ctx.stroke();
         });
-
         update();
       }
 
@@ -171,10 +242,17 @@
       loop();
     }
 
-    // Auto scroll album
+    // 🎶 Music
+    function playMusic() {
+      const audio = document.getElementById('birthday-audio');
+      audio.play().catch(err => {
+        console.log("User interaction required to play music.");
+      });
+    }
+
+    // 📸 Auto-scroll Album
     const album = document.getElementById('photo-album');
     let scrollAmount = 0;
-
     setInterval(() => {
       scrollAmount += 150;
       if (scrollAmount >= album.scrollWidth - album.clientWidth) {
@@ -183,12 +261,15 @@
       album.scrollTo({ left: scrollAmount, behavior: 'smooth' });
     }, 3000);
 
-    // Play music on button click
-    function playMusic() {
-      const audio = document.getElementById('birthday-audio');
-      audio.play().catch(err => {
-        console.log("User interaction required to play music.");
-      });
+    // ⭐️ Add hundreds of stars
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 200; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDuration = `${2 + Math.random() * 3}s`;
+      starsContainer.appendChild(star);
     }
   </script>
 </body>
